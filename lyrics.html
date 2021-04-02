@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dancing with Robots _ Google Image Algorithm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+    <link href="assets/app.css.css" rel="stylesheet" />
+
+
+</head>
+<body>
+
+<nav id="menu">
+    <a href="index.html">Start</a>
+    <a href="robots-css1.html">Robot Nr. 1 _ Girl</a>
+    <a href="robots-css2.html">Robot Nr. 2 _ Massive Attack</a>
+    <a href="Song/GoogleSearchAPI/test-google-apiV3.html">Random Image Generator</a>
+    <a href="images.html">Results Image Generator</a>
+   <a href="lyrics.html">Lyrics Animation</a>
+</nav>
+<section id="verse-5">
+
+   <div>Love, love is a verb</div>
+    <div>Love is a doing word</div>
+    <div>Feathers on my breath</div>
+    <div>Gentle impulsion</div>
+    <div>Shakes me, makes me lighter</div>
+    <div>Feathers on my breath</div>
+
+
+</section>
+</body>
+<script>
+    let section = document.querySelectorAll('section')
+
+    window.onload = (() => {
+            section.forEach(function(v) {
+            let rect = v.getBoundingClientRect();
+            let y = rect.y;
+            if (y > window.innerHeight || y < -1 * window.innerHeight) {
+                v.classList.remove("animiert");
+            } else {
+                v.classList.add("animiert");
+            }
+        })
+    })
+</script>
+</html>

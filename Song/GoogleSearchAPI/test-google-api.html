@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Google Image API</title>
+    <style>
+        @import url('https://rsms.me/inter/inter-ui.css');
+        body{
+            font-size: 14px;
+            font-family: 'Arial', sans-serif;
+            font-weight: 700;
+            height: 36px;
+        }
+        #wrapper{
+            display:grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+            grid-auto-rows: minmax(100px, auto);
+        }
+
+        .select-wrapper {
+            position: relative;
+
+        }
+
+        .select-wrapper::before {
+            color: #fff;
+            font-size: 20px;
+            pointer-events: none;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+        }
+
+        select {
+            border: none;
+            border-radius: 2px;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
+            color: #666;
+            cursor: pointer;
+            font-size: 14px;
+            font-family: 'Arial', sans-serif;
+            font-weight: 400;
+            height: 36px;
+            background-color:white;
+            outline: none;
+            width: 100%;
+            margin: .4rem;
+            padding-left:10px;
+
+        }
+
+        select option {
+            color: #666;
+            background-color:white;
+            padding: 0 8px;
+
+
+        }
+
+        select::-ms-expand {
+            display: none;
+        }
+
+        select:focus::-ms-value {
+            background-color: white;
+        }
+
+        img{
+            display:block;
+            width:100%;
+
+        }
+        img:nth-of-type(3n){
+            grid-row: span 2;
+            grid-column: span 2;
+        }
+        .login-card {
+            padding: 40px;
+            width: 274px;
+            background-color: #F7F7F7;
+            margin: 0 auto 10px;
+            border-radius: 2px;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .login-card h1 {
+            font-weight: 100;
+            text-align: center;
+            font-size: 2.3em;
+        }
+
+        .login-card input[type=submit] {
+            width: 100%;
+            display: block;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .login-card input[type=text], input[type=password] {
+            height: 44px;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 10px;
+            -webkit-appearance: none;
+            background: #fff;
+            border: 1px solid #d9d9d9;
+            border-top: 1px solid #c0c0c0;
+            /* border-radius: 2px; */
+            padding: 0 8px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+
+        .login-card input[type=text]:hover, input[type=password]:hover {
+            border: 1px solid #b9b9b9;
+            border-top: 1px solid #a0a0a0;
+            -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+            -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .login {
+            text-align: center;
+            font-size: 14px;
+            font-family: 'Arial', sans-serif;
+            font-weight: 700;
+            height: 36px;
+            padding: 0 8px;
+            /* border-radius: 3px; */
+            /* -webkit-user-select: none;
+              user-select: none; */
+        }
+
+        .login-submit {
+            /* border: 1px solid #3079ed; */
+            border: 0px;
+            color: #fff;
+            text-shadow: 0 1px rgba(0,0,0,0.1);
+            background-color: #4d90fe;
+            /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
+        }
+
+        .login-submit:hover {
+            /* border: 1px solid #2f5bb7; */
+            border: 0px;
+            text-shadow: 0 1px rgba(0,0,0,0.3);
+            background-color: #357ae8;
+            /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
+        }
+
+        .login-card a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 400;
+            text-align: center;
+            display: inline-block;
+            opacity: 0.6;
+            transition: opacity ease 0.5s;
+        }
+
+        .login-card a:hover {
+            opacity: 1;
+        }
+
+
+        .input {
+            border: 0;
+            box-sizing: border-box;
+            font-size: 20px;
+            height: 40px;
+            margin-top: 20px;
+            outline: none !important;
+            position: relative;
+
+        }
+
+
+        input {
+            margin: .4rem;
+        }
+
+    </style>
+</head>
+<body>
+<div class="login-card">
+    <h1>Custom Image Search</h1><br>
+    <form id="form" class="form" >
+    <div class="select-wrapper fa fa-angle-down">
+    <select id="pref" name="pref">
+        <option value="BLACK">BLACK</option>
+        <option value="BLUE">BLUE</option>
+        <option value="BROWN">BROWN</option>
+        <option value="GRAY">GRAY</option>
+        <option value="GREEN">GREEN</option>
+        <option value="ORANGE">ORANGE</option>
+        <option value="PINK">PINK</option>
+        <option value="PURPLE">PURPLE</option>
+        <option value="RED">RED</option>
+        <option value="TEAL">TEAL</option>
+        <option value="WHITE">WHITE</option>
+        <option value="YELLOW">YELLOW</option>
+    </select>
+    </div>
+
+    <input class="input" type="text" id="search" placeholder="Stichwort">
+    <input type="submit" name="login" class="login login-submit" value="Suche">
+    </form>
+</div>
+
+
+<div id="wrapper">
+
+</div>
+</body>
+
+<script src="https://apis.google.com/js/api.js"></script>
+<script>
+    /**
+     * Sample JavaScript code for search.cse.list
+     * See instructions for running APIs Explorer code samples locally:
+     * https://developers.google.com/explorer-help/guides/code_samples#javascript
+     * https://developers.google.com/custom-search/v1/reference/rest/v1/cse/list
+     * https://cse.google.com/cse/
+     * https://console.developers.google.com/
+     */
+    var images=[];
+    function loadClient() {
+        gapi.client.setApiKey("AIzaSyD0ioylQQn9APdiyo6Y08Hol-_DQLK1AME");
+        return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/customsearch/v1/rest")
+            .then(function() { console.log("GAPI client loaded for API"); },
+                function(err) { console.error("Error loading GAPI client for API", err); });
+    }
+    // Make sure the client is loaded before calling this method.
+    function execute() {
+        console.log(document.getElementById("pref").value);
+        return gapi.client.search.cse.list({
+            "cx": "52c97b8141f0b8847",
+            "imgSize": "MEDIUM",
+            "imgType": "photo",
+            "num": 10,
+            "searchType": "image",
+            "q": document.getElementById("search").value,
+            "imgColorType": "color",
+            "imgDominantColor": document.getElementById("pref").value
+        })
+            .then(function(response) {
+                    // Handle the results here (response.result has the parsed body).
+                    //console.log("Response", response);
+                    images = response.result.items;
+                    showImages();
+                },
+                function(err) { console.error("Execute error", err); });
+    }
+    gapi.load("client");
+
+    function showImages(){
+        for(let n=0;n<images.length;n++){
+            console.log(images[n].link);
+            let img = document.createElement('img');
+            img.src = images[n].link;
+            document.getElementById("wrapper").appendChild(img);
+        }
+    }
+
+    setTimeout(function(){ loadClient(); }, 3000);
+
+
+
+
+    const element = document.querySelector('form');
+    element.addEventListener('submit', event => {
+        event.preventDefault();
+        execute();
+    });
+</script>
+
+
+
+
+
+</html>

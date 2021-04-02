@@ -1,0 +1,30 @@
+/*-------controls--------*/
+#controllwrapper{
+  position:absolute;
+}
+.controls {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-family: sans-serif;
+  font-size: 12px;
+  padding: 8px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  margin: 0 0 8px 0;
+}
+
+.control-key {
+  flex-grow: 1;
+  margin-right: 16px;
+}
+
+.control-value {
+  width: 152px;
+}

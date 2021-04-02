@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lyrics Image Generator with Textgain and Google Image API</title>
+    <!--
+    Enter Lyrics
+    Textgain ermittelt die Substantive aus dem Text
+    und übergibt sie einer Google Image Suche
+
+    -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+    <link href="../../assets/app.css.css" rel="stylesheet" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+        @import url('https://rsms.me/inter/inter-ui.css');
+        body{
+            font-size: 14px;
+            font-family: 'Arial', sans-serif;
+            font-weight: 700;
+            height: 36px;
+        }
+        #wrapper{
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 48px;
+        }
+
+
+
+        article.img{
+            position:absolute;
+            max-width: 100%;
+            height: auto;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /*filter: invert(100%);*/
+            mix-blend-mode:multiply;
+            opacity:0.6;
+        }
+
+        article.font{
+            mix-blend-mode: soft-light;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size:160px;
+            line-height:110%;
+            color:white;
+            /*filter: invert(100%);*/
+        }
+        img{
+            display:block;
+            width:100%;
+
+        }
+
+        .login-card {
+            padding: 40px;
+            width: 274px;
+            background-color: #F7F7F7;
+            margin: 0 auto 10px;
+            border-radius: 2px;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .login-card h1 {
+            font-weight: 100;
+            text-align: center;
+            font-size: 2.3em;
+        }
+
+        .login-card input[type=submit] {
+            width: 100%;
+            display: block;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .login-card input[type=text], input[type=password] {
+            height: 44px;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 10px;
+            -webkit-appearance: none;
+            background: #fff;
+            border: 1px solid #d9d9d9;
+            border-top: 1px solid #c0c0c0;
+            /* border-radius: 2px; */
+            padding: 0 8px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+
+        .login-card input[type=text]:hover, input[type=password]:hover {
+            border: 1px solid #b9b9b9;
+            border-top: 1px solid #a0a0a0;
+            -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+            -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .login {
+            text-align: center;
+            font-size: 14px;
+            font-family: 'Arial', sans-serif;
+            font-weight: 700;
+            height: 36px;
+            padding: 0 8px;
+            /* border-radius: 3px; */
+            /* -webkit-user-select: none;
+              user-select: none; */
+        }
+
+        .login-submit {
+            /* border: 1px solid #3079ed; */
+            border: 0px;
+            color: #fff;
+            text-shadow: 0 1px rgba(0,0,0,0.1);
+            background-color: #4d90fe;
+            /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
+        }
+
+        .login-submit:hover {
+            /* border: 1px solid #2f5bb7; */
+            border: 0px;
+            text-shadow: 0 1px rgba(0,0,0,0.3);
+            background-color: #357ae8;
+            /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
+        }
+
+        .login-card a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 400;
+            text-align: center;
+            display: inline-block;
+            opacity: 0.6;
+            transition: opacity ease 0.5s;
+        }
+
+        .login-card a:hover {
+            opacity: 1;
+        }
+
+
+
+
+        textarea{
+            width:100%;
+            height:200px;
+        }
+
+        input {
+            margin: .4rem;
+        }
+
+    </style>
+</head>
+<body>
+<nav id="menu">
+    <a href="../../index.html">Start</a>
+    <a href="../../robots-css1.html">Robot Nr. 1 _ Girl</a>
+    <a href="../../robots-css2.html">Robot Nr. 2 _ Massive Attack</a>
+    <a href="../../Song/GoogleSearchAPI/test-google-apiV3.html">Random Image Generator</a>
+    <a href="../../images.html">Results Image Generator</a>
+    <a href="../../lyrics.html">Lyrics Animation</a>
+</nav>
+<div class="login-card">
+    <!--
+    Bsp.
+    The snow glows white on the mountain tonight
+Not a footprint to be seen
+A kingdom of isolation
+And it looks like I'm the queen
+The wind is howling like this swirling storm inside
+Couldn't keep it in, heaven knows I've tried
+Don't let them in, don't let them see
+Be the good girl you always have to be
+Conceal, don't feel, don't let them know
+Well, now they know
+Let it go, let it go
+Can't hold it back anymore
+Let it go, let it go
+Turn away and slam the door
+I don't care what they're going to say
+Let the storm rage on
+The cold never bothered me anyway
+It's funny how some distance makes everything seem small
+And the fears that once controlled me can't get to me at all
+It's time to see what I can do
+To test the limits and break through
+No right, no wrong, no rules…
+-->
+    <h1>Lyrics Image Generator</h1><br>
+    <form id="form" class="form" >
+
+
+        <textarea id="search" placeholder="Stichwort"> </textarea>
+    <input type="submit" name="login" class="login login-submit" value="Enter Lyrics">
+    </form>
+</div>
+
+
+<div id="wrapper">
+
+</div>
+</body>
+
+<script src="https://apis.google.com/js/api.js"></script>
+
+<script>
+    /**
+     * Sample JavaScript code for search.cse.list
+     * See instructions for running APIs Explorer code samples locally:
+     * https://developers.google.com/explorer-help/guides/code_samples#javascript
+     * https://developers.google.com/custom-search/v1/reference/rest/v1/cse/list
+     * https://cse.google.com/cse/
+     * https://console.developers.google.com/
+     */
+    var images=[];
+    var words = "";
+    function loadClient() {
+        gapi.client.setApiKey("AIzaSyD0ioylQQn9APdiyo6Y08Hol-_DQLK1AME");
+        return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/customsearch/v1/rest")
+            .then(function() { console.log("GAPI client loaded for API"); },
+                function(err) { console.error("Error loading GAPI client for API", err); });
+    }
+
+    // Make sure the client is loaded before calling this method.
+    function execute() {
+        console.log("Woerter"+ words);
+        return gapi.client.search.cse.list({
+            "cx": "52c97b8141f0b8847",
+            "imgSize": "MEDIUM",
+            "imgType": "photo",
+            "num": 3,
+            "searchType": "image",
+            "q": words
+        })
+            .then(function(response) {
+                    // Handle the results here (response.result has the parsed body).
+                    //console.log("Response", response);
+                    images = response.result.items;
+                    showImages();
+                    addFont();
+                    document.getElementsByClassName("login-card")[0].style.display = 'none';
+                },
+                function(err) { console.error("Execute error", err); });
+    }
+    gapi.load("client");
+
+    function showImages(){
+
+        let shrink = [5,8,13,21,34];
+        for(let n=0;n<images.length;n++){
+
+
+
+            let el = document.createElement('article');
+            let trans = -1* shrink[n] / 2;
+            el.style.width = "calc(100vw - "+2*shrink[n]+"vw)";
+            el.style.top = "50%";
+            el.style.left = "50%";
+            el.style.transform = "translate(-50%, -50%)";
+            el.classList.add("img");
+            let img = document.createElement('img');
+            img.src = images[n].link;
+            el.appendChild(img)
+            document.getElementById("wrapper").appendChild(el);
+        }
+    }
+
+    function addFont(){
+        let el = document.createElement('article');
+        el.style.position="absolute";
+        el.classList.add("font");
+        el.style.width = "100vw";
+        el.style.height = "100vh";
+        el.style.top = "50%";
+        el.style.left = "50%";
+        el.style.transform = "translate(-50%, -50%)";
+        let t = document.createTextNode(words);
+        el.appendChild(t);
+        document.getElementById("wrapper").appendChild(el);
+
+
+
+
+    }
+
+    setTimeout(function(){ loadClient(); }, 1000);
+
+
+    async function getText(t) {
+        //https://medium.com/@dtkatz/3-ways-to-fix-the-cors-error-and-how-access-control-allow-origin-works-d97d55946d9
+        let response = await fetch("https://cors-anywhere.herokuapp.com/https://api.textgain.com/lemma?q="+t+"&lang=en&key=5fdb45600b60fdfec69b2de6");
+        let data = await response.json();
+        //console.log(data)
+        return data;
+    }
+
+
+
+
+    const element = document.querySelector('form');
+    element.addEventListener('submit', event => {
+        event.preventDefault();
+        getText(encodeURIComponent(document.getElementById("search").value)).then(data => {
+            //console.log(data.text[0][0]);
+            for (let n=0;n<data.text[0][0].length;n++){
+
+                if(data.text[0][0][n].tag == "NOUN"){
+                    words +=data.text[0][0][n].word+" ";
+                }
+            }
+
+            execute();
+        });
+    });
+</script>
+
+
+
+
+
+</html>

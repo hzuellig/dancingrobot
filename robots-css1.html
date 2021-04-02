@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)https://dancing-with-robots-idea.netlify.app/ -->
+<html lang="en" class="js-focus-visible" data-js-focus-visible=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>robots2</title><meta data-n-head="1" data-hid="description" name="description" content=""><link data-n-head="1" rel="icon" type="image/x-icon" href="https://dancing-with-robots-idea.netlify.app/favicon.ico"><link rel="preload" href="./robots-css_files/dc83a97.js" as="script"><link rel="preload" href="./robots-css_files/d04a803.js" as="script"><link rel="preload" href="./robots-css_files/e4c485a.js" as="script"><link rel="preload" href="./robots-css_files/05aed25.js" as="script">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+    <link href="assets/app.css.css" rel="stylesheet" />
+    <style type="text/css">
+        html{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:16px;word-spacing:1px;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;box-sizing:border-box}body{padding:2rem}*,:after,:before{box-sizing:border-box;margin:0}.button--green{display:inline-block;border-radius:4px;border:1px solid #3b8070;color:#3b8070;text-decoration:none;padding:10px 30px}.button--green:hover{color:#fff;background-color:#3b8070}.button--grey{display:inline-block;border-radius:4px;border:1px solid #35495e;color:#35495e;text-decoration:none;padding:10px 30px;margin-left:15px}.button--grey:hover{color:#fff;background-color:#35495e}
+    </style>
+    <style>
+        :root {
+            /*************************** Page-wide variables ****************************/
+            --scalerobot:1;
+            --tempoarm:1s;
+            --tempokopf:10s;
+        }
+
+
+    </style>
+
+    <style type="text/css">
+        .container{
+            margin:0 auto;
+            min-height:100vh;
+            display:grid;
+            grid-template-columns:1fr ;
+            justify-content: start;
+            align-items:start
+        }
+        .robot{
+            width:600px;
+            height:800px;
+            border:1px solid salmon;
+            position:relative;
+            display:block;
+            transform:scale(.75) translateY(-15%)
+        }
+        .head{
+            width:180px;height:180px;
+            border-radius:50%;
+            background-color:#eee;
+            left:200px;
+            top:0
+        }
+        .eye,.head{position:absolute}
+        .eye{width:30px;height:30px;border-radius:15px;background-color:#333;border:10px solid #fff;top:55px;left:75px}
+        .eye--left{left:90px}
+        .eye--right{left:120px}
+        .nose{width:40px;height:40px;background-color:#ccc;position:absolute;top:90px;left:100px}
+        .mouth{width:50px;height:5px;background-color:red;top:140px;left:90px}
+        .body,.mouth{border-radius:10px;position:absolute}
+        .body{width:250px;height:300px;background-color:#eee;left:180px;top:180px}
+        .leg{width:80px;height:319px;top:480px;background-color:#ddd;position:absolute}
+        .leg--left{right:200px}
+        .leg--right{left:200px}
+        .arm{width:50px;height:310px;background-color:#ddd;position:absolute;top:180px;border-radius:25px}
+        .arm--left{right:150px}
+        .arm--right{left:150px}
+        .foot{width:100px;height:50px}
+        .foot,.hand{background-color:#c4c4c4;position:absolute;bottom:0}
+        .hand{width:60px;height:60px;border-radius:25px}
+        /*.robot.tommy .head{background-color:#afeeee;background-image:radial-gradient(#afeeee,#81d8d8);top:40px}
+        .tommy .nose{top:70px;background-color:transparent;border:20px solid transparent;border-bottom-color:salmon}
+        .tommy .eye--left{left:70px}.tommy .mouth{height:15px;background-color:#fff;border:3px solid red;top:127px}
+        .tommy .body{width:200px;background-color:salmon;background-image:linear-gradient(90deg,#e89d93,#e89d93 4px,#f7f7f7 0,#f7f7f7);  background-size:8px 100%;transform:skew(10deg 10deg);border-radius:50px;top:190px;left:200px}
+        .tommy .arm{background-color:#f46f60;top:200px;transform-origin:top left}
+        .tommy .arm--left{left:380px;transform:rotate(-8deg)}
+        .tommy .arm--right{left:180px;transform:rotate(8deg)}
+        .tommy .leg{width:40px;background-color:#333;transform-origin:top left}
+        .tommy .leg--right{left:230px}
+        .tommy .leg--left{right:230px;transform:rotate(-5deg)}
+        .tommy .foot{background-color:#1e90ff;height:30px}
+        .tommy .arm{height:270px}
+        .tommy .hand{background-color:#1e90ff;width:30px;height:80px;top:230px;transform:rotate(-15deg);left:20px}
+        .tommy .arm--right .hand{transform:rotate(20deg);left:0}*/
+    </style>
+    <link href="robots-css_files/robots.css" rel="stylesheet" />
+    <link href="robots-css_files/controls.css" rel="stylesheet" />
+    <meta data-n-head="1" name="viewport" content="width=device-width, initial-scale=1"></head>
+    <body>
+    <nav id="menu">
+        <a href="index.html">Start</a>
+        <a href="robots-css1.html">Robot Nr. 1 _ Girl</a>
+        <a href="robots-css2.html">Robot Nr. 2 _ Massive Attack</a>
+        <a href="Song/GoogleSearchAPI/test-google-apiV3.html">Random Image Generator</a>
+        <a href="images.html">Results Image Generator</a>
+        <a href="lyrics.html">Lyrics Animation</a>
+    </nav>
+
+
+                <div class="container">
+
+                    <div class="robot baseline robot girl">
+                        <div class="leg leg--left">
+                            <div class="foot"></div>
+                        </div>
+                        <div class="leg leg--right">
+                            <div class="foot"></div>
+                        </div>
+                        <div class="body"></div>
+                        <div class="head">
+                            <div class="eye eye--left">
+                            </div>
+                            <div class="eye eye--right">
+
+                            </div>
+                            <div class="nose">
+
+                            </div>
+                            <div class="mouth">
+
+                            </div>
+                        </div>
+                        <div class="arm arm--left">
+                            <div class="hand">
+
+                            </div>
+                        </div>
+                        <div class="arm arm--right">
+                            <div class="hand">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+    <!--<script src="./robots-css_files/dc83a97.js"></script><script src="./robots-css_files/d04a803.js"></script><script src="./robots-css_files/e4c485a.js"></script><script src="./robots-css_files/05aed25.js"></script>
+-->
+
+                <div class="controls">
+                    <p class="control">
+                        <span class="control-key">Animation Kopf</span>
+                        <input class="control-value" type="range" id="tempokopf" min="1" max="10" step="1">
+                    </p>
+                    <p class="control">
+                        <span class="control-key">Animation Fuss</span>
+                        <input class="control-value" type="range" id="tempoarm" min="1" max="10" step="1">
+                    </p>
+
+                </div>
+    </body>
+
+<script src="robots-css_files/app.js"></script>
+</html>

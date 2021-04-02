@@ -1,0 +1,150 @@
+.container {
+  /*background: conic-gradient(#ffffff 0.09turn 0.87turn, #a87670 0.27turn 0.6turn, #93c7ee 0.6turn 1turn);;*/
+  background: linear-gradient(0deg, #fff 20px, transparent 21px, #fff 23px, transparent 24px, #fff 25px, transparent 53px, #fff 65px, transparent 87px, #fff 119px, transparent 210px, #fff 230px, transparent 250px, #fff 270px, transparent 290px, #fff 330px, transparent 400px);
+  background-color: #000;
+  background-size: 40px 600px; }
+
+.robot.massive {
+  transform: scale(var(--scalerobot)) translateY(calc(-15% + var(--scalerobot) * 800px / 3 ));
+  border: none; }
+  .robot.massive .head {
+    transform: scale(2, 2);
+    background-color: #eee3bb;
+    background-image: radial-gradient(farthest-corner at 70% 70%, #cbccc8 0, #918781 30%, #ff4a46 60%, #d6cccd 100%);
+    width: calc(180px * var(--scalerobot));
+    height: calc(180px * var(--scalerobot));
+    left: calc(200px * var(--scalerobot));
+    transform-origin: bottom center;
+    border-radius: 50%; }
+  .robot.massive .eye {
+    width: calc(30px * var(--scalerobot));
+    height: calc(30px * var(--scalerobot));
+    background-color: transparent;
+    top: calc(55px * var(--scalerobot));
+    left: calc(75px * var(--scalerobot));
+    border-radius: 50%;
+    border-color: transparent; }
+    .robot.massive .eye:before, .robot.massive .eye:after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      left: -60px;
+      top: -60px;
+      border-radius: 120px;
+      animation-name: Grow;
+      animation-duration: 10s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      animation-direction: alternate; }
+    .robot.massive .eye:before {
+      box-shadow: 0px 0px 100px 10px #ff4a46; }
+    .robot.massive .eye:after {
+      box-shadow: inset 0px 0px 100px 10px #ff4a46; }
+  .robot.massive .eye--left {
+    left: calc(90px * var(--scalerobot));
+    top: calc(250px * var(--scalerobot));
+    transform: scale(0.4); }
+  .robot.massive .eye--right {
+    animation-name: eye;
+    animation-duration: var(--tempokopf);
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    transform-origin: top left; }
+  .robot.massive .nose {
+    width: calc(20px * var(--scalerobot));
+    height: calc(40px * var(--scalerobot));
+    background-color: rgba(200, 186, 175, 0.8);
+    border-right: #ed064e 5px solid;
+    border-bottom: #ccac8f 5px solid;
+    position: absolute;
+    top: calc(80px * var(--scalerobot));
+    left: calc(80px * var(--scalerobot));
+    transform: perspective(50px) rotateX(30deg) translateX(20px);
+    z-index: 10;
+    display: none; }
+  .robot.massive .mouth {
+    width: calc(50px * var(--scalerobot));
+    height: calc(20px * var(--scalerobot));
+    top: calc(250px * var(--scalerobot));
+    left: calc(70px * var(--scalerobot));
+    border-bottom: #b00640 5px solid;
+    box-shadow: 0 10px 1em #ff4a46;
+    background-color: transparent;
+    border-radius: unset;
+    display: none; }
+  .robot.massive .body {
+    background-color: #E5E5F7;
+    background-image: linear-gradient(180deg, #b7958e 20%, #110b0d 80%);
+    width: calc(250px * var(--scalerobot));
+    height: calc(300px * var(--scalerobot));
+    left: calc(180px * var(--scalerobot));
+    top: calc(200px * var(--scalerobot));
+    transform: perspective(500px) rotateX(10deg) scaleY(1.5);
+    transform-origin: top center; }
+  .robot.massive .arm {
+    width: calc(50px * var(--scalerobot));
+    height: calc(310px * var(--scalerobot));
+    background-image: linear-gradient(90deg, #ffffff 20%, #110b0d 100%);
+    top: calc(200px * var(--scalerobot));
+    border-radius: calc(25px * var(--scalerobot)); }
+  .robot.massive .arm--left {
+    right: calc(370px * var(--scalerobot)); }
+  .robot.massive .arm--right {
+    left: calc(380px * var(--scalerobot));
+    transform-origin: top center;
+    transform: rotate(-30deg); }
+  .robot.massive .hand {
+    background-color: transparent;
+    opacity: 0.8;
+    /*background-image: radial-gradient(farthest-corner at 100% 100%, gold 0, #cca486, #eee3bb 100%);*/
+    width: calc(60px * var(--scalerobot));
+    height: calc(60px * var(--scalerobot));
+    border-radius: calc(25px * var(--scalerobot));
+    box-shadow: 30px 30px 1em #fff; }
+  .robot.massive .leg {
+    width: calc(80px * var(--scalerobot));
+    height: calc(319px * var(--scalerobot));
+    top: calc(480px * var(--scalerobot));
+    background-color: #eee3bb;
+    transform-origin: top center;
+    background-image: linear-gradient(90deg, #ffffff 20%, #110b0d 80%); }
+  .robot.massive .leg--left {
+    right: calc(320px * var(--scalerobot)); }
+  .robot.massive .leg--right {
+    left: calc(320px * var(--scalerobot)); }
+  .robot.massive .foot {
+    width: 100px;
+    height: 50px;
+    background-color: #ff4a46;
+    background-image: linear-gradient(180deg, #404040 20%, #ff4a46 80%);
+    box-shadow: 10px 10px 0.3em #ad3b38;
+    border-radius: 10%; }
+
+@keyframes eye {
+  0% {
+    transform: translateX(calc(120px * var(--scalerobot))) rotate(0deg); }
+  80% {
+    transform: translate(calc(100px * var(--scalerobot)), calc(-30px * var(--scalerobot))) rotate(180deg) scale(0.6); }
+  100% {
+    transform: translateX(calc(120px * var(--scalerobot))) rotate(360deg); } }
+@keyframes Grow {
+  0% {
+    transform: scale(0.1);
+    -ms-transform: scale(0.1);
+    /* IE 9 */
+    -webkit-transform: scale(0.1);
+    /* Safari and Chrome */
+    opacity: 0.5; }
+  50% {
+    opacity: 1; }
+  100% {
+    transform: scale(2);
+    -ms-transform: scale(2);
+    /* IE 9 */
+    -webkit-transform: scale(2);
+    /* Safari and Chrome */
+    opacity: 0.5; } }
+
+/*# sourceMappingURL=robots-massive.css.map */
