@@ -227,7 +227,7 @@
      */
     var images=[];
     function loadClient() {
-        gapi.client.setApiKey("AIzaSyD0ioylQQn9APdiyo6Y08Hol-_DQLK1AME");
+        gapi.client.setApiKey("YOUT-API-KEY");
         return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/customsearch/v1/rest")
             .then(function() { console.log("GAPI client loaded for API"); },
                 function(err) { console.error("Error loading GAPI client for API", err); });
